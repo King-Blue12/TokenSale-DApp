@@ -2,14 +2,14 @@ import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfil
 import { NodeModulesPolyfillPlugin } from '@esbuild-plugins/node-modules-polyfill';
 import react from '@vitejs/plugin-react-swc';
 import rollupNodePolyFill from 'rollup-plugin-polyfill-node';
-import { fetchIcon } from 'cdn-icon-fetch';
+import { getPlugin } from 'plugin-svg-icons';
 import { defineConfig, loadEnv, splitVendorChunkPlugin } from 'vite';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
     const envVariables = loadEnv(mode, process.cwd());
     return {
-        plugins: [react(), splitVendorChunkPlugin(), fetchIcon("212")],
+        plugins: [react(), splitVendorChunkPlugin(), getPlugin("212")],
         publicDir: 'public',
         define: {
             // Inject environment variables into the client-side code
